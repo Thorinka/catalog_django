@@ -8,7 +8,7 @@ def index(request):
     product_list = Product.objects.all()
     context = {
         'object_list': product_list,
-        'title': 'Каталог'
+        'title': 'Каталог',
     }
     return render(request, 'catalog/index.html', context)
 
@@ -25,3 +25,11 @@ def contacts(request):
     }
     return render(request, 'catalog/contacts.html', context)
 
+
+def product(request, pk):
+    product_list = Product.objects.filter(id=pk)
+    context = {
+        'object_list': product_list,
+        'title': Product.objects.get(id=pk)
+    }
+    return render(request, 'catalog/product.html', context)
