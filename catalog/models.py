@@ -30,3 +30,5 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'  # Настройка для наименования одного объекта
         verbose_name_plural = 'продукты'  # Настройка для наименования набора объектов
+
+
