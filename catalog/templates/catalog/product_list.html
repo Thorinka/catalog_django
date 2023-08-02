@@ -1,4 +1,3 @@
-
 {% extends 'catalog/base.html' %}
 {% load my_tags %}
 
@@ -6,8 +5,11 @@
 {% block content %}
 
 
-
 <div class="container">
+    <div class="col-12 mb-4">
+        <a class="btn btn-outline-primary" href="{% url 'catalog:product_create' %}">Создать продукт</a>
+    </div>
+
     <div class="row text-center">
         {% for object in object_list %}
         <div class="col-3">
@@ -20,8 +22,17 @@
                     <h1 class="card-title pricing-card-title">{{ object.product_price }} $</h1>
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                         <li> Категория: {{ object.category }}</li>
+                        {% if object.version %}
+                        <li> Версия: {{ object.version|get_item:'version_name' }} - {{ object.version|get_item:'version_num' }}</li>
+                        {% endif %}
                     </ul>
-                    <a href={% url 'catalog:product' object.pk %} type="button" class="btn btn-lg btn-block btn-outline-primary">Подробнее</a>
+                    <a href={% url 'catalog:product' object.pk %} type="button" class="btn btn-lg btn-block
+                    btn-outline-primary">Подробнее</a>
+                    <br>
+                    <div class="btn-group">
+                        <a class="btn btn-outline-secondary" href="{% url 'catalog:product_update' object.pk %}">Редактировать</a>
+                        <a class="btn btn-outline-danger" href="{% url 'catalog:product_delete' object.pk %}">Удалить</a>
+                    </div>
                 </div>
             </div>
         </div>
