@@ -1,6 +1,8 @@
 {% extends 'catalog/base.html' %}
 
+
 {% block content %}
+{% if user.is_authenticated %}
 <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
@@ -25,4 +27,8 @@
                 </div>
             </div>
         </div>
+{% else %}
+{% include 'catalog/includes/inc_need_authorization.html' %}
+{% endif %}
 {% endblock %}
+

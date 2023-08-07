@@ -21,3 +21,4 @@ class CategoryAdmin(admin.ModelAdmin):
 class VersionAdmin(admin.ModelAdmin):
     list_display = ('product', 'version_name', 'version_num', 'is_active',)
     list_filter = ('product', 'is_active')
+

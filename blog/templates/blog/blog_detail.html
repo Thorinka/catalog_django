@@ -1,8 +1,9 @@
 {% extends 'catalog/base.html' %}
 {% load my_tags %}
+
 {% block title %} object.product_name {% endblock %}
 {% block content %}
-
+{% if user.is_authenticated %}
 <div class="album py-5 bg-light">
     <div class="container">
 
@@ -29,5 +30,8 @@
           </div>
         </div>
 </div>
-
+{% else %}
+{% include 'catalog/includes/inc_need_authorization.html' %}
+{% endif %}
 {% endblock %}
+

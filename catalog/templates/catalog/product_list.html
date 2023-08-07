@@ -2,8 +2,9 @@
 {% load my_tags %}
 
 
-{% block content %}
 
+{% block content %}
+{% if user.is_authenticated %}
 
 <div class="container">
     <div class="col-12 mb-4">
@@ -38,5 +39,10 @@
         </div>
         {% endfor %}
     </div>
+</div>
+{% else %}
+{% include 'catalog/includes/inc_need_authorization.html' %}
+{% endif %}
 
     {% endblock %}
+

@@ -1,4 +1,10 @@
+from django.conf import settings
 from django.db import models
+
+NULLABLE = {
+    'blank': True,
+    'null': True
+}
 
 
 class Category(models.Model):
@@ -17,11 +23,13 @@ class Category(models.Model):
 class Product(models.Model):
     product_name = models.CharField(max_length=150, verbose_name='наименование')
     product_price = models.IntegerField(verbose_name='цена')
-    product_description = models.TextField(blank=True, null=True)
-    product_image = models.ImageField(upload_to='products/', blank=True, null=True)
+    product_description = models.TextField(**NULLABLE)
+    product_image = models.ImageField(upload_to='products/', **NULLABLE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
     created_date = models.DateTimeField(auto_now_add=True)
     changed_date = models.DateTimeField(auto_now_add=True)
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='автор')
 
     def __str__(self):
         # Строковое отображение объекта

@@ -4,7 +4,7 @@
 
 
 {% block content %}
-
+{% if user.is_authenticated %}
 <div class="col-12 mb-5">
     <a class="btn btn-outline-primary" href="{% url 'blog:create' %}"> Добавить материал </a>
 </div>
@@ -35,5 +35,8 @@
         {% endfor %}
 </div>
 </div>
-
+{% else %}
+{% include 'catalog/includes/inc_need_authorization.html' %}
+{% endif %}
     {% endblock %}
+
