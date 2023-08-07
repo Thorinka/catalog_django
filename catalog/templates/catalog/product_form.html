@@ -1,7 +1,7 @@
 {% extends 'catalog/base.html' %}
 
 {% block content %}
-
+{% if user.is_authenticated %}
     <div class="col-12">
         <form class="row justify-content-md-center" method="post" enctype="multipart/form-data">
 
@@ -49,5 +49,8 @@
 
         </form>
     </div>
-
+{% else %}
+{% include 'catalog/includes/inc_need_authorization.html' %}
+{% endif %}
 {% endblock %}
+
